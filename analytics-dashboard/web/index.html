@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline · Sales Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__mark">▦</span>
+      <div>
+        <h1 class="topbar__title">Sales Analytics Pipeline</h1>
+        <p class="topbar__subtitle">Java &middot; JDBC &middot; Collections &rarr; JSON &rarr; Chart.js</p>
+      </div>
+    </div>
+    <div class="topbar__actions">
+      <span class="status" id="statusIndicator">
+        <span class="status__dot"></span>
+        <span class="status__text">checking pipeline&hellip;</span>
+      </span>
+      <button class="btn" id="refreshBtn">Re-run pipeline</button>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <section class="kpi-row" id="kpiRow" aria-label="Key metrics">
+      <article class="kpi">
+        <p class="kpi__label">Total revenue</p>
+        <p class="kpi__value" id="kpiRevenue">&mdash;</p>
+        <p class="kpi__meta">across all recorded sales</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Records processed</p>
+        <p class="kpi__value" id="kpiRecords">&mdash;</p>
+        <p class="kpi__meta">rows read over JDBC</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Categories tracked</p>
+        <p class="kpi__value" id="kpiCategories">&mdash;</p>
+        <p class="kpi__meta">aggregated via HashMap</p>
+      </article>
+      <article class="kpi">
+        <p class="kpi__label">Active months</p>
+        <p class="kpi__value" id="kpiMonths">&mdash;</p>
+        <p class="kpi__meta">sorted via TreeMap</p>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="panel panel--wide">
+        <header class="panel__head">
+          <h2>Revenue trend</h2>
+          <span class="panel__tag">revenueByMonth</span>
+        </header>
+        <div class="panel__body">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </article>
+
+      <article class="panel">
+        <header class="panel__head">
+          <h2>Revenue by category</h2>
+          <span class="panel__tag">revenueByCategory</span>
+        </header>
+        <div class="panel__body">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </article>
+
+      <article class="panel">
+        <header class="panel__head">
+          <h2>Revenue by region</h2>
+          <span class="panel__tag">revenueByRegion</span>
+        </header>
+        <div class="panel__body">
+          <canvas id="regionChart"></canvas>
+        </div>
+      </article>
+
+      <article class="panel panel--wide">
+        <header class="panel__head">
+          <h2>Top products by units sold</h2>
+          <span class="panel__tag">topProducts</span>
+        </header>
+        <div class="panel__body">
+          <canvas id="productChart"></canvas>
+        </div>
+      </article>
+    </section>
+
+    <footer class="pipeline-footer">
+      <p>Pipeline: <code>MySQL</code> &rarr; <code>SalesDAO (JDBC)</code> &rarr; <code>AggregationService (Collections)</code> &rarr; <code>dashboard-data.json</code> &rarr; <code>Chart.js</code></p>
+    </footer>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
